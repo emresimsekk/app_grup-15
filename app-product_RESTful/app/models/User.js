@@ -20,8 +20,9 @@ module.exports = (sequelize, DataTypes) => {
 
 
   users.associate = (models) => {
+
     users.belongsTo(models.Userinfo, {
-      as: 'userinfo',
+      as: 'userinfos',
       foreignKey: 'id'
     });
 
@@ -30,11 +31,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id'
     });
 
-    users.belongsToMany(models.Role, {
-      as: "roles",
-      through: "user_role",
-      foreignKey: "user_id"
+    users.belongsTo(models.UserRole, {
+      as: 'userRoles',
+      foreignKey:'id'
     });
+
   };
 
   users.isAdmin = function(roles) {
@@ -43,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
 
     return tmpArray.includes('Admin');
   }
-
+  
   return users;
 
 };

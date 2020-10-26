@@ -20,7 +20,7 @@ module.exports=(req,res,next)=>{
                 res.status(500).json({msg:"Token Çözülemedi.",err});
             }
             else {
-               User.findByPk(decoded.user.id,{include:"roles"}).then(user=>{
+               User.findByPk(decoded.user.id,{include:"userRoles"}).then(user=>{
 
                 console.log(user.roles);
                 req.user=user;

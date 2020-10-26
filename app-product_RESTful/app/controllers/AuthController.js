@@ -1,6 +1,7 @@
 const {
     User,
-    Userinfo
+    Userinfo,
+    UserRole
 } = require('../models/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -45,37 +46,58 @@ module.exports = {
         });
 
     },
+
     signUp(req, res) {
 
         let password = bcrypt.hashSync(req.body.password, Number.parseInt(authConfig.rounds));
         User.create({
-
             mail: req.body.mail,
             password: password
 
         }).then(user => {
             Userinfo.create({
                 user_id: user.id,
-              
                 name: req.body.name,
                 surname: req.body.surname,
                 actives: req.body.actives,
 
+
             }).then(user => {
-                let token = jwt.sign({
-                    user: user
-                }, authConfig.secret, {
-                    expiresIn: authConfig.expires
-                });
-                res.json({
-                    user:user,
-                    token: token
+
+                UserRole.create({
+                    user_id: user.id,
+                    role_id: 1
+                }).then(user => {
+
+                    let token = jwt.sign({
+                        user: user
+                    }, authConfig.secret, {
+                        expiresIn: authConfig.expires
+                    });
+                    res.json({
+                        user: user,
+                        token: token
+                    });
+
+                }).catch(err => {
+                    res.status(500).json({
+                        state: 0,
+                        err
+                    });
                 });
 
             }).catch(err => {
-                res.status(500).json(err);
+                res.status(500).json({
+                    state: 0,
+                    err
+                });
             });
 
+        }).catch(err => {
+            res.status(500).json({
+                state: 0,
+                err
+            });
         });
 
 
