@@ -20,6 +20,7 @@ module.exports = {
         }).then(user => {
             if (!user) {
                 res.status(404).json({
+                    state:0,
                     msg: "Bu mail adresine ait kullanıcı bulunamadı!"
                 });
             } else {
@@ -31,12 +32,14 @@ module.exports = {
                         expiresIn: authConfig.expires
                     });
                     res.json({
+                        state:2,
                         user: user,
                         token: token
                     });
                 } else {
                     res.status(401).json({
-                        msg: "Şifre yanlış"
+                        state:1,
+                        msg: "Şifre yanlış !"
                     });
                 }
             }
@@ -75,6 +78,7 @@ module.exports = {
                         expiresIn: authConfig.expires
                     });
                     res.json({
+                        state:2,
                         user: user,
                         token: token
                     });
