@@ -25,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
       as: 'author',
       foreignKey: 'doctor_id'
     });
+    
+    hour.hasMany(models.Apppointment, {
+      as: 'appointments',
+      foreignKey: 'id'
+    });
   };
 
   return hour;
