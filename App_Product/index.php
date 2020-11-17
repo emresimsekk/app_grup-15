@@ -19,16 +19,20 @@ require __DIR__ . '/route.php';
 
 // Route::run('/', 'homepage@index');
 //Login
-Route::run('/signin', 'cAuth@getLogin',);
+Route::run('/signin', 'cAuth@getLogin');
 Route::run('/signin', 'cAuth@postLogin', 'post');
 
 // //Register
  Route::run('/signup', 'cAuth@getRegister');
 Route::run('/signup', 'cAuth@postRegister','post');
-Route::run('/succes', 'cAuth@succes',);
+Route::run('/succes', 'cAuth@succes');
 
-Route::run('/homepage', 'homepage@getHomePage',);
+Route::run('/homepage', 'homepage@getHomePage');
 Route::run('/homepage', 'homepage@addApppoint','post');
+Route::run('/profile', 'profile@index');
+
+Route::run('/history', 'history@index');
+
 // Route::run('/succes', 'cAuth@succes');
 // Route::run('/key/{url}', 'cAuth@key');
 

@@ -3,32 +3,37 @@
 
 class homepage extends Controller
 {
+
+
     public function getHomePage()
-    {
-    session_start();
-    
-    $appPoint = $this->model('apppointment');
-    $city = $appPoint->getAllCity(); 
+        {
+            session_start();
+            
+            $appPoint = $this->model('apppointment');
+            $user = $this->model('mUser');
+            $city = $appPoint->getAllCity(); 
 
-    $fields=[
-        'user_id' => $_SESSION['user'],
-        ];
-    $listAppPoint = $appPoint->listAppPoint($fields); 
-    
-   
-   
-    if(!empty($_SESSION['user']))
-    {
-        $this->view('homepage',[
-            'city' =>  $city,
-            'appList' =>$listAppPoint
-            ]);
-    }
-    else {
-        echo "yetkisiz.";
-    }
+            $fields=[
+                'user_id' => $_SESSION['user'],
+                ];
+            $listAppPoint = $appPoint->listAppPoint($fields); 
+            $userInfo = $user->userInfoList($fields); 
+        
+        
+            if(!empty($_SESSION['user']))
+            {
+                $this->view('homepage',[
+                    'city' =>  $city,
+                    'appList' =>$listAppPoint,
+                    'userInfo'=>$userInfo
+                    ]);
+            }
+            else {
+                echo "yetkisiz.";
+            }
 
-    }
+        }
+
     public function addApppoint()
     {
         session_start();
@@ -38,6 +43,12 @@ class homepage extends Controller
         $fields=[
         'user_id' => $_SESSION['user'],
         'hour_id' => $_POST['apppoint'],
+        'doctor_id' => $_POST['doctor'],
+        'dep_id' => $_POST['dep'],
+        'hospital_id' => $_POST['hospital'],
+        'district_id' => $_POST['district'],
+        'city_id' => $_POST['country'],
+        
         ];
         $addApppoint = $appModel->addApp($fields); 
 

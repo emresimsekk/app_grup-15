@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
 
   hour.associate = (models) => {
     hour.belongsTo(models.Doctor, {
-      as: 'author',
-      foreignKey: 'doctor_id'
+      as: 'doctors',
+      foreignKey: 'id'
     });
     
     hour.hasMany(models.Apppointment, {

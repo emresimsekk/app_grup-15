@@ -52,7 +52,29 @@ class mUser extends Model {
 
     }
 
+    public function userInfoList($fields)
+    {
+        $str=[
+            "user_id"=>$fields["user_id"],
+        ];
+        
+        $str=json_encode($str);
+      
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,"http://localhost:3002/api/userInfo");
+        curl_setopt($ch,CURLOPT_POST,true);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,$str);
+        curl_setopt( $ch, CURLOPT_HTTPHEADER,   ['Content-Type: application/json']);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 
+        $result=json_decode(curl_exec($ch),true);
+        curl_close($ch);
+        return $result;
+
+    }
+    
  
   
 

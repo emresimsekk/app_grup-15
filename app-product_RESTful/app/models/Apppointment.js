@@ -13,6 +13,33 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    doctor_id:{
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    dep_id:{
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    
+    },
+    hospital_id:{
+      allowNull: false,
+      type: DataTypes.INTEGER,
+ 
+    },
+    district_id:{
+      allowNull: false,
+      type: DataTypes.INTEGER,
+ 
+    },
+    city_id:{
+      allowNull: false,
+      type: DataTypes.INTEGER,
+     
+    },
+    actives:{
+      type: DataTypes.BOOLEAN,
+    }
     
   }, {
     tableName: "apppointments"
@@ -26,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     apppoint.belongsTo(models.Hour, {
       as: 'hours',
-      foreignKey: 'id'
+      foreignKey: 'hour_id'
     });
 
     apppoint.belongsTo(models.Doctor, {

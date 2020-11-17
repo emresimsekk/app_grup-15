@@ -6,7 +6,13 @@ module.exports = {
     addApppoint(req, res) {
         Apppointment.create({
             user_id: req.body.user_id,
-            hour_id: req.body.hour_id
+            hour_id: req.body.hour_id,
+            doctor_id:req.body.doctor_id,
+            dep_id:req.body.dep_id,
+            hospital_id:req.body.hospital_id,
+            district_id:req.body.district_id,
+            city_id:req.body.city_id,
+            actives:1
         }).then(app => {
 
             res.json({
@@ -26,6 +32,7 @@ module.exports = {
         await Apppointment.findAll({
             where: {
                 user_id: req.body.user_id,
+                actives:1
             }, include: [
                 {
                  
@@ -70,5 +77,56 @@ module.exports = {
             res.json(result);
         });
 
-    }
+    },
+
+    async history(req,res){
+        await Apppointment.findAll({
+            where: {
+                user_id: req.body.user_id,
+                actives:0
+            }, include: [
+                {
+                 
+                    as: 'hours',
+                  
+                    model: Hour,
+                   
+                },
+                { 
+                    as: 'doctors',
+                  
+                    model: Doctor,
+               
+                },
+                { 
+                    as: 'departments',
+                  
+                    model: Department,
+               
+                },
+                { 
+                    as: 'hospitals',
+                  
+                    model: Hospital,
+               
+                },
+                { 
+                    as: 'districts',
+                  
+                    model: District,
+               
+                },
+                { 
+                    as: 'citys',
+                  
+                    model: City,
+               
+                }
+            ]
+
+        }).then(result => {
+            res.json(result);
+        });
+
+    },
 }

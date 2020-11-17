@@ -26,6 +26,56 @@ module.exports = {
         },
         onDelete: "CASCADE"
       },
+      doctor_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        referances: {
+          model: "doctors",
+          key: "id"
+        },
+        onDelete: "CASCADE"
+      },
+      dep_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        referances: {
+          model: "departments",
+          key: "id"
+        },
+        onDelete: "CASCADE"
+      },
+      hospital_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        referances: {
+          model: "hospitals",
+          key: "id"
+        },
+        onDelete: "CASCADE"
+      },
+      district_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        referances: {
+          model: "districts",
+          key: "id"
+        },
+        onDelete: "CASCADE"
+      },
+      city_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        referances: {
+          model: "citys",
+          key: "id"
+        },
+        onDelete: "CASCADE"
+      },
+      actives:{
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        
+      },
      
       createdAt: {
         allowNull: false,

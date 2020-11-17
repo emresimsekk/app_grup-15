@@ -17,13 +17,31 @@
 <body>
 
     <div class="container-fluid">
- 
+        <!-- Image and text -->
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+
+                ONLINE RANDEVU SİSTEMİ
+            </a>
+        </nav>
+        <br><br>
         <div class="row">
             <div class="col-1">&nbsp;</div>
-            <div class="col-2" style="background:pink">menü</div>
-            <div class="col-8" style="background:red">
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item active pb-4 pt-4"><?php echo  $userInfo['user'][0]['userinfos']['name'].'  '; echo  $userInfo['user'][0]['userinfos']['surname'] ?> </li>
+                    <li class="list-group-item pb-4 pt-4"><a href="homepage">Randevu Al</a></li>
+                    <li class="list-group-item pb-4 pt-4"><a href="profile">Profilim</a></li>
+                    <li class="list-group-item pb-4 pt-4"><a href="history">Geçmiş randevular</a></li>
+                    <li class="list-group-item pb-4 pt-4">Çıkış</li>
+                
+                </ul>
+            </div>
+            <div class="col-1">&nbsp;</div>
+
+            <div class="col-7 border rounded">
                 <div class="row">
-                    <div class="col-6" style="background:aqua">
+                    <div class="col-6 mt-5 mb-5">
                         <form action="" method="POST">
                             <div class="form-group">
                                 <label for="title">Şehir :</label>
@@ -72,7 +90,7 @@
 
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mt-5">
                                 <input class="btn btn-default  btn-block my-4 lg text-light "
                                     style="background-color:#4682B4" name="addApp" id="addApp" value="Randevu Ekle"
                                     type="submit"></input>
@@ -81,36 +99,70 @@
 
 
                     </div>
-                    <div class="col-6" style="background:pink">
+                    <div class="col-6 border  border-top-0 border-bottom-0 border-right-0">
 
-                    <div class="row">
-                                  
-                  <div class="col-6">
-                  
-                        <div class="col-3"><?php echo  $appList[0]["citys"]["cityName"] ?></div>
-                        <div class="col-3"><?php echo  $appList[0]["districts"]["districtName"] ?></div>
+                        <div class="row">
+                            <?php  ?>
+                            <div class="col-12">
 
-                        <div class="col-12"><?php echo  $appList[0]["hospitals"]["hospitalName"] ?></div>
-                        <div class="col-12"><?php echo  $appList[0]["departments"]["depName"] ?></div>
-                        <div class="col-12"><?php echo  $appList[0]["doctors"]["doctorName"] ?></div>
-                        <div class="col-12"><?php echo  $appList[0]["hours"]["hourName"] ?></div>
-                        
+                                <?php for($i=0;$i<=(count($appList)-1);$i++)
+                            {?>
+                                <div class="col-12 border rounded mt-5">
+                                    <div class="row">
+                                        <div class="col-12 pt-3 pb-3" style="font-size:16px">
+                                            <?php echo  $appList[$i]["hospitals"]["hospitalName"] ?></div>
+                                    </div>
+
+                                    <div class="row pt-1 pb-1">
+                                        <div class="col-6 " style="font-size:13px">
+                                            <?php echo $appList[$i]["citys"]["cityName"] ?>/<?php echo  $appList[$i]["districts"]["districtName"] ?>
+                                        </div>
+                                        <div class="col-6" style="font-size:13px">
+                                            <?php echo  $appList[$i]["departments"]["depName"]  ?></div>
+                                    </div>
+                                    <div class="row pt-1 pb-3">
+                                        <div class="col-6">
+                                            <?php echo  $appList[$i]["doctors"]["doctorName"] ?>
+                                        </div>
+                                        <div class="col-6">
+                                            <?php echo  $appList[$i]["hours"]["hourName"] ?></div>
+                                    </div>
+                                    <div class="row pt-1 pb-3">
+                                        <div class="col-12">
+                                            <?php 
+                                        if($appList[$i]["actives"]==1)
+                                        {
+                                            ?>
+                                            <button type="button" class="btn btn-danger btn-block">İptal Et</button>
+
+                                            <?php
+                                        }
+                                        
+                                        
+                                        
+                                        ?>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <?php 
+                            }
+                            ?>
+                            </div>
+
                         </div>
-                    
                     </div>
-      
-                    </div>
+
                 </div>
 
             </div>
 
+            <div class="col-1">&nbsp;</div>
+
+
+
         </div>
-
-        <div class="col-1">&nbsp;</div>
-
-    
-
-    </div>
 
     </div>
 
