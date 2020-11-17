@@ -35,3 +35,18 @@
 | Route | HTTP | Method | Description |
 | --- | --- | --- | --- |
 | /api/hour | GET |  doctor_id | ID' ye göre  doktorun çalışma saatlerini listeler. |
+
+#AppPoint
+| Route | HTTP | Method | Description |
+| --- | --- | --- | --- |
+| /api/apppoint | post |  user_id, hour_id, doctor_id, dep_id, hospital_id, district_id, city_id, actives | Sisteme randevu ekler |
+
+| Route | HTTP | Method | Description |
+| --- | --- | --- | --- |
+| /api/apppointall | post |  user_id | Randevu Listeler |
+
+
+#History
+| Route | HTTP | Method | Description |
+| --- | --- | --- | --- |
+| /api/history | post |  user_id| Kullanıcı profil bilgilerini listeler |
