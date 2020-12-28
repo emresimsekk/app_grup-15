@@ -3,11 +3,21 @@ module.exports = (sequelize, DataTypes) => {
 
   const users = sequelize.define('User', {
 
-
     mail: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
+    },
+    phone:{
+      type: DataTypes.STRING(10),
+      allowNull: false,
+    },
+    ask:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    random:{
+      type: DataTypes.STRING,
     },
     password: {
       type: DataTypes.STRING,

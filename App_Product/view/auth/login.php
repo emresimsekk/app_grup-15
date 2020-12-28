@@ -23,20 +23,20 @@
         <!-- Form -->
        
           <form action="" id="infoForm" method="POST">
-          <p class="h5 mb-5 text-center">KULLANICI GİRİŞİ</p>
+          <p class="h5 mb-5 text-center">HASTA GİRİŞİ</p>
           <!-- Input fields -->
           <div class="form-group">
-            <input type="email" name="mail"  class="form-control  " maxlength="80" minlength="12"
-            placeholder="E-mail">
+            <input type="text" name="mail"  class="form-control " required   title="Mail veya telefon adresi girilmelidir."  value="<?php echo $_POST['mail'] ?? ''?>"
+            placeholder="Mail & Telefon ">
           
           </div>
           <div class="form-group">
-            <input type="password" name="password"  class="form-control mb-5 " maxlength="16"
+            <input type="password" name="password" required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}" title="Şifre: 1 büyük 1 küçük ve rakam olmak zorunda !"  class="form-control mb-5 " maxlength="16"
              placeholder="Şifre">
           </div>
           <!-- End input fields -->
 
-          <input class="btn btn-default  btn-block my-4 lg text-light " style="background-color:#4682B4" name="login" id="login"
+          <input class="btn btn-default  btn-block my-4 lg text-light "   style="background-color:#4682B4" name="login" id="login"
             value="Giriş Yap" type="submit"></input>
 
             </form>
@@ -59,8 +59,22 @@
            }
 
            ?>
-
-           <a  class="h7 mb-5 mb-5" href="signup">Kayıt Ol</a>
+          <div class="row">
+           
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <a  class="h7 mb-5 mb-5" href="signup">Kayıt Ol</a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <a  class="h7 mb-5 mb-5" href="forgot">Şifremi Unuttum </a>
+                  </div>
+                </div>
+            
+          </div>
+         
+          
          
       
         <!-- Form end -->

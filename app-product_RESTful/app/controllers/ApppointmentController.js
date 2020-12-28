@@ -1,5 +1,5 @@
 const {
-    Apppointment,Hour,Doctor,Department,Hospital,District,City,
+    Apppointment,Hour,Date,Doctor,Department,Hospital,District,City,
 } = require('../models/index');
 
 module.exports = {
@@ -7,6 +7,7 @@ module.exports = {
         Apppointment.create({
             user_id: req.body.user_id,
             hour_id: req.body.hour_id,
+            date_id: req.body.date_id,
             doctor_id:req.body.doctor_id,
             dep_id:req.body.dep_id,
             hospital_id:req.body.hospital_id,
@@ -35,11 +36,12 @@ module.exports = {
                 actives:1
             }, include: [
                 {
-                 
                     as: 'hours',
-                  
                     model: Hour,
-                   
+                },
+                {
+                    as: 'dates',
+                    model: Date,
                 },
                 { 
                     as: 'doctors',
@@ -127,6 +129,48 @@ module.exports = {
         }).then(result => {
             res.json(result);
         });
+
+    },
+    updateApp(req, res) {
+        Apppointment.update({
+           actives:0
+        },
+        {
+            where:{
+                user_id: req.body.user_id,
+                id:req.body.id
+            }
+        }
+        
+        )
+        .then(result=>{
+            res.json({
+                state: 1,
+                result: result,
+            });
+        })
+
+
+    },
+    updateActiveApp(req, res) {
+        Apppointment.update({
+           actives:1
+        },
+        {
+            where:{
+                user_id: req.body.user_id,
+                id:req.body.id
+            }
+        }
+        
+        )
+        .then(result=>{
+            res.json({
+                state: 1,
+                result: result,
+            });
+        })
+
 
     },
 }

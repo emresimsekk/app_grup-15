@@ -32,8 +32,9 @@
                     <li class="list-group-item active pb-4 pt-4"><?php echo  $userInfo['user'][0]['userinfos']['name'].'  '; echo  $userInfo['user'][0]['userinfos']['surname'] ?> </li>
                     <li class="list-group-item pb-4 pt-4"><a href="homepage">Randevu Al</a></li>
                     <li class="list-group-item pb-4 pt-4"><a href="profile">Profilim</a></li>
+                    <li class="list-group-item pb-4 pt-4"><a href="newpassword">Şifre Güncelleme</a></li>
                     <li class="list-group-item pb-4 pt-4"><a href="history">Geçmiş randevular</a></li>
-                    <li class="list-group-item pb-4 pt-4">Çıkış</li>
+                    <li class="list-group-item pb-4 pt-4"><a href="signin">Çıkış</a></li>
                 
                 </ul>
             </div>
@@ -82,12 +83,17 @@
                                     <option value="0" style="font-size:14px">Seçiniz</option>
                                 </select>
                             </div>
-                            <div class="form-group" id="radio">
-                                <label for="title">Randevu Saati :</label><br>
-                                <select name="apppoint" id="apppoint" class="form-control" style="width:350px">
+                            <div class="form-group">
+                                <label for="title">Randevu Günü :</label>
+                                <select name="date" id="date" class="form-control" style="width:350px">
                                     <option value="0" style="font-size:14px">Seçiniz</option>
                                 </select>
-
+                            </div>
+                            <div class="form-group" id="radio">
+                                <label for="title">Randevu Saati :</label><br>
+                                <select name="time" id="time" class="form-control" style="width:350px">
+                                    <option value="0" style="font-size:14px">Seçiniz</option>
+                                </select>
                             </div>
 
                             <div class="form-group mt-5">
@@ -127,15 +133,23 @@
                                         <div class="col-6">
                                             <?php echo  $appList[$i]["hours"]["hourName"] ?></div>
                                     </div>
+                                   
+                                   
                                     <div class="row pt-1 pb-3">
                                         <div class="col-12">
                                             <?php 
                                         if($appList[$i]["actives"]==1)
                                         {
                                             ?>
-                                            <button type="button" class="btn btn-danger btn-block">İptal Et</button>
-
+                                            <form action="" method="POST">
+                                            <input type="text" name="appID" hidden value=" <?php echo  $appList[$i]["id"] ?>">
+                                                <input class="btn btn-danger  btn-block  my-4 lg text-light "
+                                                name="iptal" id="iptal" value="İptal Et"
+                                                type="submit"></input>
+                                           
+                                            </form>
                                             <?php
+                                            
                                         }
                                         
                                         
@@ -175,7 +189,10 @@
         $("#hospital").prop("disabled", true);
         $("#dep").prop("disabled", true);
         $("#doctor").prop("disabled", true);
-        $("#apppoint").prop("disabled", true);
+        $("#date").prop("disabled", true);
+        $("#time").prop("disabled", true);
+        $("#addApp").prop("disabled", true);
+        
         $('#country').change(function () {
             var countryID = $(this).val();
 
@@ -205,6 +222,11 @@
 
                             $("#doctor").empty();
                             $("#doctor").append('<option>Seçiniz</option>');
+                            $("#date").empty();
+                            $("#date").append('<option>Seçiniz</option>');
+
+                            $("#time").empty();
+                            $("#time").append('<option>Seçiniz</option>');
 
 
                             $.each(resp, function (key, value) {
@@ -217,19 +239,7 @@
 
 
                             $("#district").empty();
-                            $("#district").append('<option>Seçiniz</option>');
-
-
-                            $("#hospital").empty();
-                            $("#hospital").append('<option>Seçiniz</option>');
-
-
-                            $("#dep").empty();
-                            $("#dep").append('<option>Seçiniz</option>');
-
-
-                            $("#doctor").empty();
-                            $("#doctor").append('<option>Seçiniz</option>');
+                            
 
                         }
                     },
@@ -252,6 +262,12 @@
 
                 $("#doctor").empty();
                 $("#doctor").append('<option>Seçiniz</option>');
+
+                $("#date").empty();
+                $("#date").append('<option>Seçiniz</option>');
+
+                $("#time").empty();
+                $("#time").append('<option>Seçiniz</option>');
             }
         });
 
@@ -281,6 +297,10 @@
                             $("#doctor").empty();
                             $("#doctor").append('<option>Seçiniz</option>');
 
+                            $("#date").empty();
+                            $("#date").append('<option>Seçiniz</option>');
+                            $("#time").empty();
+                            $("#time").append('<option>Seçiniz</option>');
                             $.each(resp, function (key, value) {
 
                                 $("#hospital").append('<option value="' + value.id + '">' +
@@ -289,14 +309,7 @@
 
                         } else {
                             $("#hospital").empty();
-                            $("#hospital").append('<option>Seçiniz</option>');
-
-                            $("#dep").empty();
-                            $("#dep").append('<option>Seçiniz</option>');
-
-                            $("#doctor").empty();
-                            $("#doctor").append('<option>Seçiniz</option>');
-
+                            
                         }
                     },
                     error: function (err) {
@@ -313,7 +326,10 @@
 
                 $("#doctor").empty();
                 $("#doctor").append('<option>Seçiniz</option>');
-
+                $("#date").empty();
+                $("#date").append('<option>Seçiniz</option>');
+                $("#time").empty();
+                $("#time").append('<option>Seçiniz</option>');
             }
         });
         $('#hospital').change(function () {
@@ -337,7 +353,10 @@
 
                             $("#doctor").empty();
                             $("#doctor").append('<option>Seçiniz</option>');
-
+                            $("#date").empty();
+                            $("#date").append('<option>Seçiniz</option>');
+                            $("#time").empty();
+                            $("#time").append('<option>Seçiniz</option>');
                             $.each(resp, function (key, value) {
 
                                 $("#dep").append('<option value="' + value.id + '">' + value
@@ -358,7 +377,10 @@
 
                 $("#doctor").empty();
                 $("#doctor").append('<option>Seçiniz</option>');
-
+                $("#date").empty();
+                $("#date").append('<option>Seçiniz</option>');
+                $("#time").empty();
+                $("#time").append('<option>Seçiniz</option>');
             }
         });
         $('#dep').change(function () {
@@ -381,7 +403,11 @@
                             $("#doctor").prop("disabled", false);
                             $("#doctor").empty();
                             $("#doctor").append('<option>Seçiniz</option>');
-
+                            $("#date").empty();
+                            $("#date").append('<option>Seçiniz</option>');
+                            $("#time").empty();
+                            $("#time").append('<option>Seçiniz</option>');
+                            
                             $.each(resp, function (key, value) {
 
                                 $("#doctor").append('<option value="' + value.id + '">' +
@@ -399,7 +425,10 @@
             } else {
                 $("#doctor").empty();
                 $("#doctor").append('<option>Seçiniz</option>');
-
+                $("#date").empty();
+                $("#date").append('<option>Seçiniz</option>');
+                $("#time").empty();
+                $("#time").append('<option>Seçiniz</option>');
             }
         });
         $('#doctor').change(function () {
@@ -410,25 +439,25 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                    url: "http://localhost:3002/api/hour?doctor_id=" + doctorID,
+                    url: "http://localhost:3002/api/date?doctor_id=" + doctorID,
 
                     dataType: "json",
                     success: function (resp) {
                         console.log(resp);
                         if (resp) {
 
-                            $("#apppoint").prop("disabled", false);
-                            $("#apppoint").empty();
-                            $("#apppoint").append('<option>Seçiniz</option>');
+                            $("#date").prop("disabled", false);
+                            $("#date").empty();
+                            $("#date").append('<option>Seçiniz</option>');
 
                             $.each(resp, function (key, value) {
 
-                                $("#apppoint").append('<option value="' + value.id + '">' +
-                                    value.hourName + '</option>');
+                                $("#date").append('<option value="' + value.id + '">' +
+                                    value.dateName + '</option>');
                             });;
 
                         } else {
-                            //$("#doctor").empty();
+                            $("#date").empty();
                         }
                     },
                     error: function (err) {
@@ -437,9 +466,61 @@
                 });
             } else {
 
-
+                $("#time").empty();
+                $("#time").append('<option>Seçiniz</option>');
             }
         });
+        $('#date').change(function () {
+            var dateID = $(this).val();
+
+            if (dateID) {
+               
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "http://localhost:3002/api/hour?date_id=" + dateID,
+
+                    dataType: "json",
+                    success: function (resp) {
+                        console.log(resp);
+                        if (resp) {
+
+                            $("#time").prop("disabled", false);
+
+                            $("#time").empty();
+                            $("#time").append('<option>Seçiniz</option>');
+
+                            $.each(resp, function (key, value) {
+
+                                $("#time").append('<option value="' + value.id + '">' +
+                                    value.hourName + '</option>');
+                            });;
+
+                        } else {
+                            //$("#time").empty();
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            } else {
+
+             
+            }
+        });
+        $('#time').change(function () {
+            var timeID = $(this).val();
+
+            if (timeID) {
+                $("#addApp").prop("disabled", false);
+              
+            } else {
+
+             
+            }
+        });
+     
     </script>
 </body>
 

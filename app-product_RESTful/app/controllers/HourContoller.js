@@ -9,7 +9,7 @@ module.exports = {
 
         await Hour.findAll({
             where: {
-                doctor_id: req.query.doctor_id
+                date_id: req.query.date_id
             }
         }).then(hour => {
             if (!Object.entries(hour).length) {

@@ -10,27 +10,35 @@ require __DIR__ . '/controller.php';
 require __DIR__ . '/route.php';
 
 
-// Route::run('/uyeler', 'uyeler@index');
-// Route::run('/uyeler', 'uyeler@post', 'post');
-// Route::run('/uye/{url}', 'uye@index');
-// Route::run('/profil/sifre-degistir', 'profile/changepassword@index');
 
-// 1.si class @'ten sonrakide method oluyor. örnek uyeler@index  uyeler classındaki index methodunu çağır
-
-// Route::run('/', 'homepage@index');
 //Login
 Route::run('/signin', 'cAuth@getLogin');
 Route::run('/signin', 'cAuth@postLogin', 'post');
+
 
 // //Register
  Route::run('/signup', 'cAuth@getRegister');
 Route::run('/signup', 'cAuth@postRegister','post');
 Route::run('/succes', 'cAuth@succes');
 
-Route::run('/homepage', 'homepage@getHomePage');
-Route::run('/homepage', 'homepage@addApppoint','post');
-Route::run('/profile', 'profile@index');
+//Forgot
+Route::run('/forgot', 'forgot@index');
+Route::run('/forgot', 'forgot@mail','post');
 
+Route::run('/password/{url}/{url}', 'forgotUpdate@index');
+Route::run('/password/{url}/{url}', 'forgotUpdate@update','post');
+
+Route::run('/newpassword', 'password@index');
+Route::run('/newpassword', 'password@update','post');
+
+Route::run('/homepage', 'homepage@getHomePage');
+
+
+Route::run('/homepage', 'homepage@addApppoint','post');
+Route::run('/cancel', 'homepage@cancel');
+
+Route::run('/profile', 'profile@index');
+Route::run('/profile', 'profile@update','post');
 Route::run('/history', 'history@index');
 
 // Route::run('/succes', 'cAuth@succes');

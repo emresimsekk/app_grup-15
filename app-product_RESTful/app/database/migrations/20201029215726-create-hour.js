@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
      
-      doctor_id: {
+      date_id: {
         type: Sequelize.INTEGER,
         referances: {
-          model: "doctors",
+          model: "dates",
           key: "id"
         },
         onDelete: "CASCADE"

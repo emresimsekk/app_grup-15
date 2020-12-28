@@ -12,6 +12,17 @@ module.exports = {
         type: Sequelize.STRING(100),
         allowNull: false,
       },
+      phone:{
+        type: Sequelize.STRING(10),
+        allowNull: false,
+      },
+      ask:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      random:{
+        type: Sequelize.STRING,
+      },
       password: {
         type: Sequelize.STRING,
         allowNull: false,

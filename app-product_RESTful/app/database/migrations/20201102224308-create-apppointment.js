@@ -26,6 +26,15 @@ module.exports = {
         },
         onDelete: "CASCADE"
       },
+      date_id:{
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        referances: {
+          model: "dates",
+          key: "id"
+        },
+        onDelete: "CASCADE"
+      },
       doctor_id:{
         allowNull: false,
         type: Sequelize.INTEGER,

@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    date_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     doctor_id:{
       allowNull: false,
       type: DataTypes.INTEGER,
@@ -56,27 +60,32 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'hour_id'
     });
 
+    apppoint.belongsTo(models.Date, {
+      as: 'dates',
+      foreignKey: 'date_id'
+    });
+
     apppoint.belongsTo(models.Doctor, {
       as: 'doctors',
-      foreignKey: 'id'
+      foreignKey: 'doctor_id'
     });
 
     apppoint.belongsTo(models.Department, {
       as: 'departments',
-      foreignKey: 'id'
+      foreignKey: 'dep_id'
     });
 
     apppoint.belongsTo(models.Hospital, {
       as: 'hospitals',
-      foreignKey: 'id'
+      foreignKey: 'hospital_id'
     });
     apppoint.belongsTo(models.District, {
       as: 'districts',
-      foreignKey: 'id'
+      foreignKey: 'district_id'
     });
     apppoint.belongsTo(models.City, {
       as: 'citys',
-      foreignKey: 'id'
+      foreignKey: 'city_id'
     });
 
    

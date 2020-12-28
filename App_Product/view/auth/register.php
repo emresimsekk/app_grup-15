@@ -24,54 +24,82 @@
         <!-- Form -->
         <form class="border border-light p-5 justify-content-center shadow-lg p-3 mb-5 bg-white rounded" action="" method="POST">
 
-          <p class="h5 mb-5 text-center">ÖĞRENCİ KAYIT</p>
+          <p class="h5 mb-5 text-center">HASTA KAYIT</p>
 
           <!-- Input fields -->
             
           <div class="row">
                 <div class="col-md-12 mb-3">
                     <div class="form-group">
-                        <input type="email" name="mail" required class="form-control  " value="<?php echo $fields['mail'] ?? ''?>" maxlength="80" minlength="12"
-                        pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="E-mail">
+                    
+                        <input type="email" name="mail" required class="form-control  " value="<?php echo $fields['mail'] ??  $_POST['mail'] ?? ''?>" maxlength="80" minlength="12"
+                        placeholder="E-mail">
                         <span class="error"><?php echo $errors['mail'] ?? ''?></span>
                     </div>
                 </div>
 
              
           </div>
+          
           <div class="row">
-                <input type="hidden" name="token" value="<?php echo $token ?>"/>
+                
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+               
+                        <input type="text" name="phone" required class="form-control "  value="<?php echo $fields['phone']  ??  $_POST['phone'] ?? ''?>" maxlength="50" minlength="2"
+                       placeholder="Telefon">
+                        <span class="error"> <?php echo $errors['phone'] ?? ''?></span>
+                    </div>
+                </div>
+                  
+              
+               
+          </div>
+          <div class="row">
+                
+              <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                      
+                            <input type="text" name="ask" required class="form-control  " value="<?php echo $fields['ask'] ?? $_POST['ask'] ?? ''?>" maxlength="50" minlength="2"
+                          placeholder="Anne Kızlık Soyadı ">
+                            <span class="error"> <?php echo $errors['ask'] ?? ''?></span>
+                        </div>
+              </div>
+          </div>
+          <div class="row">
+                
                 <div class="col-md-6 mb-3">
                     <div class="form-group">
-                        <input type="text" name="name" required class="form-control  " value="<?php echo $fields['name'] ?? ''?>" maxlength="50" minlength="2"
-                        pattern="[a-zA-Z\ğüşıöçĞÜŞİÖÇ\s]{2-50}" placeholder="Ad">
+                        <input type="text" name="name" required class="form-control " required   max="30" min="3" value="<?php echo $fields['name'] ??  $_POST['name'] ?? ''?>" maxlength="50" minlength="2"
+                        placeholder="Ad">
                         <span class="error"> <?php echo $errors['name'] ?? ''?></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" name="surname" required class="form-control  "  value="<?php echo $fields['surname'] ?? ''?>" maxlength="50" minlength="2"
-                        pattern="[a-zA-Z\ğüşıöçĞÜŞİÖÇ\s]{2-50}" placeholder="Soyad">
+                        <input type="text" name="surname" required class="form-control  " required   max="30" min="3"  value="<?php echo $fields['surname'] ??  $_POST['surname'] ?? ''?>" maxlength="50" minlength="2"
+                       placeholder="Soyad">
                         <span class="error"><?php echo $errors['surname'] ?? ''?></span>
                     </div>
                 </div>
           </div>
+  
 
         
 
           <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="form-group">
-                        <input type="password" name="password" required class="form-control  "  maxlength="16"
-                        minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}" placeholder="Şifre">
-                        <span class="error"><?php echo $errors['password1'] ?? ''?></span>
+                        <input type="password" name="password"  required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}" title="Şifre: 1 büyük 1 küçük ve rakam olmak zorunda !" class="form-control  "  maxlength="16"
+                        minlength="8" placeholder="Şifre">
+                        <span class="error"><?php echo $errors['password'] ?? ''?></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="password" name="password2" required class="form-control  " maxlength="16"
-                        minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}" placeholder="Şifre Tekrarı">
-                        <span class="error"><?php echo $errors['password2'] ?? ''?></span>
+                        <input type="password" name="passwordtry" required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}" title="Şifre: 1 büyük 1 küçük ve rakam olmak zorunda Max:16 Min:8 !" required class="form-control  " maxlength="16"
+                        minlength="8"  placeholder="Şifre Tekrarı">
+                        <span class="error"><?php echo $errors['passwordtry'] ?? ''?></span>
                     </div>
                 </div>
           </div>
@@ -105,7 +133,7 @@
           <input class="btn btn-default  btn-block my-4 lg text-light " style="background-color:#4682B4" name="register"
             value="Kayıt Ol" type="submit"></input>
 
-         
+            <a  class="h7 mb-5 mb-5" href="signin">Giriş Yap</a>
            
 
         </form>

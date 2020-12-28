@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   const hour = sequelize.define('Hour', {
 
     
-    doctor_id: {
+    date_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   hour.associate = (models) => {
-    hour.belongsTo(models.Doctor, {
-      as: 'doctors',
+    hour.belongsTo(models.Date, {
+      as: 'dates',
       foreignKey: 'id'
     });
     

@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'dep_id'
     });
 
-    doctor.hasMany(models.Hour, {
-      as: 'hours',
+    doctor.hasMany(models.Date, {
+      as: 'dates',
       foreignKey: 'doctor_id'
     });
   };

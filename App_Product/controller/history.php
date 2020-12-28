@@ -9,9 +9,8 @@ class history extends Controller
         $user = $this->model('mUser');
 
         $appPoint = $this->model('apppointment');
-
-       
-
+        
+      
         $fields=[
             'user_id' => $_SESSION['user'],
             ];
@@ -28,8 +27,23 @@ class history extends Controller
                 ]);
         }
         else {
-            echo "yetkisiz.";
+            header("Location:signin");
         }
+    
+        // if(isset($_POST['againApp']))
+        // {
+        //     echo 'DSADasdsa';
+           
+        // //  $fields=[
+        // //      'user_id' => $_SESSION['user'],
+        // //      'id' => $_POST['appID'],
+        // //  ];
+ 
+        // //  $updateApp = $appModel->activeApp($fields);
+        // //  header("Location:homepage");
+            
+
+        // }
     
     }
 

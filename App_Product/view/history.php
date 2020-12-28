@@ -32,25 +32,26 @@
                     <li class="list-group-item active pb-4 pt-4"><?php echo  $userInfo['user'][0]['userinfos']['name'].'  '; echo  $userInfo['user'][0]['userinfos']['surname'] ?> </li>
                     <li class="list-group-item pb-4 pt-4"><a href="homepage">Randevu Al</a></li>
                     <li class="list-group-item pb-4 pt-4"><a href="profile">Profilim</a></li>
+                    <li class="list-group-item pb-4 pt-4"><a href="newpassword">Şifre Güncelleme</a></li>
                     <li class="list-group-item pb-4 pt-4"><a href="history">Geçmiş randevular</a></li>
-                    <li class="list-group-item pb-4 pt-4">Çıkış</li>
+                    <li class="list-group-item pb-4 pt-4"><a href="signin">Çıkış</a></li>
                 
                 </ul>
             </div>
             <div class="col-1">&nbsp;</div>
 
-            <div class="col-7 border rounded">
+            <div class="col-7 ">
                 <div class="row">
                  
                     <div class="col-6   pb-5">
 
                         <div class="row">
                             <?php  ?>
-                            <div class="col-12">
+                            <div class="col-12" >
 
                                 <?php for($i=0;$i<=(count($appList)-1);$i++)
                             {?>
-                                <div class="col-12 border rounded mt-5">
+                                <div class="col-12 border rounded mt-5"   >
                                     <div class="row">
                                         <div class="col-12 pt-3 pb-3" style="font-size:16px">
                                             <?php echo  $appList[$i]["hospitals"]["hospitalName"] ?></div>
@@ -70,21 +71,34 @@
                                         <div class="col-6">
                                             <?php echo  $appList[$i]["hours"]["hourName"] ?></div>
                                     </div>
+                                    
                                     <div class="row pt-1 pb-3">
                                         <div class="col-12">
+                                       
                                             <?php 
+                                            
                                         if($appList[$i]["actives"]==0)
                                         {
                                             ?>
                                             <span style="color:red">Geçmiş Randevu</span>
+                                            <form action="" method="POST">
+                                                <input type="text" name="appID" hidden value=" <?php echo  $appList[$i]["id"] ?>">
 
+                                                <input class="btn btn-default  btn-block my-4 lg text-light "
+                                                    style="background-color:#4682B4" name="againApp" id="againApp" value="Randevuyu Tekrar Ekle"
+                                                    type="submit"></input>
+
+                                            </form>
                                             <?php
                                         }
                                         
                                         
                                         
                                         ?>
-                                        </div>
+                                        
+                                          
+                                            </div>
+                                      
 
                                     </div>
 

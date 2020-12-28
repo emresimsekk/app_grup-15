@@ -1,1 +1,0 @@
-burası öğrenci giriş sayfası
